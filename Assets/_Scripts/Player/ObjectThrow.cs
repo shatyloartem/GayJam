@@ -1,10 +1,10 @@
 using DG.Tweening;
-using TMPro;
 using UnityEngine;
 
 public class ObjectThrow : MonoBehaviour
 {
     [SerializeField] private GameObject _granadePrefab;
+
     private int _granadeCounter = 5;
 
     private void Update()
@@ -22,6 +22,5 @@ public class ObjectThrow : MonoBehaviour
             granade.transform.DOMove(cursorPosition, .35f);
             _granadeCounter--;
         }
-
     }
 }
