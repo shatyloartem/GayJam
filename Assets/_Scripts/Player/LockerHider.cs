@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class LockerItem : MonoBehaviour
+public class LockerHider : MonoBehaviour
 {
     private PlayerMovement _playerMovement;
     private BoxCollider2D _boxCollider;
@@ -25,6 +25,7 @@ public class LockerItem : MonoBehaviour
             _playerMovement.enabled = true;
             _boxCollider.enabled = true;
             _isHidden = false;
+
             _spriteRenderer.sortingOrder = 3;
         }
         else if (Input.GetKeyDown(KeyCode.E) && _isLockerInRange)
@@ -32,7 +33,9 @@ public class LockerItem : MonoBehaviour
             _playerMovement.enabled = false;
             _boxCollider.enabled = false;
             _isHidden = true;
+
             _spriteRenderer.sortingOrder = 1;
+
             transform.DOMove(_locker.position, .3f);
         }
     }
@@ -49,8 +52,6 @@ public class LockerItem : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Locker"))
-        {
             _isLockerInRange = false;
-        }
     }
 }
