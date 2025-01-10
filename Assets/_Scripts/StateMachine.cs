@@ -14,15 +14,16 @@ namespace _Scripts
 
         public void ChangeState(IState newState)
         {
+            if (newState.GetType() == CurrentState.GetType())
+                return;
+            
             CurrentState?.Exit();
             
             CurrentState = newState;
             CurrentState.Enter();
         }
 
-        public void UpdateState()
-        {
-            CurrentState?.Stay();
-        }
+        public void UpdateState() => CurrentState?.Stay();
+        public void OnDestroy() => CurrentState?.OnDestroy();
     }
 }

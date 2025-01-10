@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using IState = _Scripts.Interfaces.IState;
@@ -7,21 +7,23 @@ namespace _Scripts.Enemy.States
 {
     public class PatrolState : IState
     {
-        // TODO: Make in Scriptable Object
-        private const int _waitingTime = 3;
-        
+        private EnemyScriptableObject _scriptableObject;
         private EnemyMovement _owner;
         private NavMeshAgent _agent;
 
         private Transform[] _patrolPoints;
+
+        private IEnumerator _waitCoroutine;
         private int _currentPoint;
         private bool _isWaiting;
         
-        public PatrolState(EnemyMovement owner, NavMeshAgent agent, Transform[] patrolPoints)
+        public PatrolState(EnemyMovement owner, EnemyScriptableObject scriptableObject, 
+            NavMeshAgent agent, Transform[] patrolPoints)
         {
             _owner = owner;
             _agent = agent;
             _patrolPoints = patrolPoints;
+            _scriptableObject = scriptableObject;
         }
         
         public void Enter()
@@ -32,29 +34,35 @@ namespace _Scripts.Enemy.States
 
         public void Stay()
         {
-            if(!_isWaiting && _agent.remainingDistance <= _agent.stoppingDistance)
-                WaitOnPoint();
+            if (_isWaiting || !(_agent.remainingDistance <= _agent.stoppingDistance)) return;
+            
+            _waitCoroutine = WaitOnPoint();
+            _owner.StartCoroutine(_waitCoroutine);
         }
 
         public void Exit()
         {
+            _owner.StopCoroutine(_waitCoroutine);
             _agent.ResetPath();
         }
 
-        private async void WaitOnPoint()
+        public void OnDestroy() => _owner.StopCoroutine(_waitCoroutine);
+
+        private IEnumerator WaitOnPoint()
         {
             _isWaiting = true;
             _agent.ResetPath();
             
-            await Task.Delay(_waitingTime * 1000);
+            yield return new WaitForSeconds(_scriptableObject.waitOnPointTime);
             
             _isWaiting = false;
 
             _currentPoint++;
             if(_currentPoint >= _patrolPoints.Length)
                 _currentPoint = 0;
-            
-            _agent?.SetDestination(_patrolPoints[_currentPoint].position);
+
+            if(Application.isPlaying && _agent.isActiveAndEnabled)
+                _agent.SetDestination(_patrolPoints[_currentPoint].position);
         }
         
         private int ClosestPoint()
