@@ -15,6 +15,10 @@ namespace _Scripts.Enemy
 
         private void Awake()
         {
+            _agent = GetComponent<NavMeshAgent>();
+            _agent.updateRotation = false;
+            _agent.updateUpAxis = false;
+            
             _stateMachine = new StateMachine(new PatrolState(this, _agent, patrolPoints));
         }
 

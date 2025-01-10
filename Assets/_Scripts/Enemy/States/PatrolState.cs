@@ -8,7 +8,7 @@ namespace _Scripts.Enemy.States
     public class PatrolState : IState
     {
         // TODO: Make in Scriptable Object
-        private const int WaitingTime = 3;
+        private const int _waitingTime = 3;
         
         private EnemyMovement _owner;
         private NavMeshAgent _agent;
@@ -38,7 +38,7 @@ namespace _Scripts.Enemy.States
 
         public void Exit()
         {
-            
+            _agent.ResetPath();
         }
 
         private async void WaitOnPoint()
@@ -46,7 +46,7 @@ namespace _Scripts.Enemy.States
             _isWaiting = true;
             _agent.ResetPath();
             
-            await Task.Delay(WaitingTime * 1000);
+            await Task.Delay(_waitingTime * 1000);
             
             _isWaiting = false;
 
@@ -54,7 +54,7 @@ namespace _Scripts.Enemy.States
             if(_currentPoint >= _patrolPoints.Length)
                 _currentPoint = 0;
             
-            _agent.SetDestination(_patrolPoints[_currentPoint].position);
+            _agent?.SetDestination(_patrolPoints[_currentPoint].position);
         }
         
         private int ClosestPoint()
