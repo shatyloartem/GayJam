@@ -13,9 +13,9 @@ public class LockerHider : MonoBehaviour
 
     private void Awake()
     {
-        _playerMovement = GetComponent<PlayerMovement>();
-        _boxCollider = GetComponent<BoxCollider2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _playerMovement = GetComponentInParent<PlayerMovement>();
+        _boxCollider = GetComponentInParent<BoxCollider2D>();
+        _spriteRenderer = GetComponentInParent<SpriteRenderer>();
     }
 
     private void Update()
@@ -36,7 +36,7 @@ public class LockerHider : MonoBehaviour
 
             _spriteRenderer.sortingOrder = 1;
 
-            transform.DOMove(_locker.position, .3f);
+            transform.parent.DOMove(_locker.position, .3f);
         }
     }
 
