@@ -297,6 +297,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 169975453902502907, guid: 424eb5a7355d7ae45a20e09601baa696, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4845875125922042450, guid: 424eb5a7355d7ae45a20e09601baa696, type: 3}
       propertyPath: m_Name
       value: Player
@@ -366,6 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443564e67d0e15743b3cfc683035c57d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _granadePrefab: {fileID: 4133100080838975668, guid: 2da4912cf024b1540ab5a2d8d2d794db, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
