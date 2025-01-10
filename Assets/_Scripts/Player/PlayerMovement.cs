@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
 
-    private Vector2 movement;
+    private Vector2 _movementDirection;
 
     private Rigidbody2D rb;
 
@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        movement.Set(InputManager.Movement.x, InputManager.Movement.y);
+        _movementDirection.Set(InputManager.Movement.x, InputManager.Movement.y);
 
-        rb.velocity = movement * moveSpeed;
+        rb.velocity = _movementDirection * moveSpeed;
     }
 }

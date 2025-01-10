@@ -5,18 +5,18 @@ public class InputManager : MonoBehaviour
 {
     public static Vector2 Movement {  get; private set; }
 
-    private PlayerInput playerInput;
-    private InputAction moveAction;
+    private PlayerInput _playerInput;
+    private InputAction _moveAction;
 
     private void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
+        _playerInput = GetComponent<PlayerInput>();
 
-        moveAction = playerInput.actions["Move"];
+        _moveAction = _playerInput.actions["Move"];
     }
 
     private void Update()
     {
-        Movement = moveAction.ReadValue<Vector2>();
+        Movement = _moveAction.ReadValue<Vector2>();
     }
 }
