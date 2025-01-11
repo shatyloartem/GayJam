@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3.5
   waitOnPointTime: 3.5
-  distanceToStop: 2.5
+  distanceToStop: 0.5
   detectDistance: 4
+  attackCooldown: 2
