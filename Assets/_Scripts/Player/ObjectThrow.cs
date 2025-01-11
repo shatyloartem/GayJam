@@ -35,6 +35,7 @@ public class ObjectThrow : MonoBehaviour
 
     private void UpdateCounter()
     {
-        _grenadeCounterText.text = _granadeCounter.ToString();
+        if(_grenadeCounterText)
+            _grenadeCounterText.text = _granadeCounter.ToString();
     }
 }

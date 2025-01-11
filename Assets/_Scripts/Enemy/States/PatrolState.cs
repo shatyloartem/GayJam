@@ -42,11 +42,17 @@ namespace _Scripts.Enemy.States
 
         public void Exit()
         {
-            _owner.StopCoroutine(_waitCoroutine);
+            if(_waitCoroutine != null)
+                _owner.StopCoroutine(_waitCoroutine);
+
             _agent.ResetPath();
         }
 
-        public void OnDestroy() => _owner.StopCoroutine(_waitCoroutine);
+        public void OnDestroy()
+        {
+            if(_waitCoroutine != null)
+                _owner.StopCoroutine(_waitCoroutine);
+        }
 
         private IEnumerator WaitOnPoint()
         {
@@ -63,6 +69,8 @@ namespace _Scripts.Enemy.States
 
             if(Application.isPlaying && _agent.isActiveAndEnabled)
                 _agent.SetDestination(_patrolPoints[_currentPoint].position);
+            
+            _waitCoroutine = null;
         }
         
         private int ClosestPoint()
