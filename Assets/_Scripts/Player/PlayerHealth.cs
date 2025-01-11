@@ -21,14 +21,19 @@ namespace _Scripts.Player
         private float _lastTimeTookDamage;
         private float _health;
         private bool _isDead;
+        private bool _isPostProcessingSetUp;
         
         private void Awake()
         {
             _health = starterHealth;
             
             Volume volume = FindObjectOfType<Volume>();
+            if (!volume)
+                return;
+            
             volume.profile.TryGet(out _vignette);
             volume.profile.TryGet(out _chromaticAberration);
+            _isPostProcessingSetUp = true;
             
             UpdatePostProcess();
         }
@@ -64,6 +69,9 @@ namespace _Scripts.Player
 
         private void UpdatePostProcess()
         {
+            if(!_isPostProcessingSetUp)
+                return;
+            
             float kof = 1 - _health / maxHealth;
             
             _vignette.intensity.value = Mathf.Lerp(playerPostProcess.defaultVignetteIntensity, 
