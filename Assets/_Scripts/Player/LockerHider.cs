@@ -6,10 +6,10 @@ public class LockerHider : MonoBehaviour
     private PlayerMovement _playerMovement;
     private BoxCollider2D _boxCollider;
     private SpriteRenderer _spriteRenderer;
-    
+    private Transform _locker;
+
     private bool _isHidden;
     private bool _isLockerInRange;
-    private Transform _locker;
 
     private void Awake()
     {
