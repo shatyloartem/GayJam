@@ -5,10 +5,13 @@ public class OpeningDoors : MonoBehaviour
     [SerializeField] private Sprite _openedDoor;
     [SerializeField] private Sprite _closedDoor;
 
+    [SerializeField] private AudioClip _doorSound;
+
     [SerializeField] private Collider2D _playerCollider;
 
     private BoxCollider2D _boxCollider;
     private SpriteRenderer _spriteRenderer;
+    private AudioSource _audioSource;
 
     private bool _isOpened;
     private bool _isPlayerInRange;
@@ -18,6 +21,7 @@ public class OpeningDoors : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _audioSource = GetComponent<AudioSource>();
     }
     
     private void Update()
@@ -29,6 +33,8 @@ public class OpeningDoors : MonoBehaviour
             _isOpened = false;
 
             _spriteRenderer.sprite = _closedDoor;
+
+            _audioSource.PlayOneShot(_doorSound);
         }
         else if (Input.GetKeyDown(KeyCode.E) && _isPlayerInRange)
         {
@@ -40,6 +46,8 @@ public class OpeningDoors : MonoBehaviour
                 _isKeyUsed = true;
 
                 _spriteRenderer.sprite = _openedDoor;
+
+                _audioSource.PlayOneShot(_doorSound);
             }
         }
     }
