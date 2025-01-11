@@ -88,7 +88,7 @@ namespace _Scripts.Enemy
         
         private void Attack()
         {
-            _stateMachine.ChangeState(new AttackState(_agent, searchDetector.Player.transform));
+            _stateMachine.ChangeState(new AttackState(_agent, searchDetector.Player.transform, enemyScriptableObject));
         }
     }
 }

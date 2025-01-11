@@ -8,28 +8,34 @@ namespace _Scripts.Enemy.States
     {
         private Transform _target;
         private NavMeshAgent _agent;
+        private EnemyScriptableObject _scriptableObject;
         
-        public AttackState(NavMeshAgent agent, Transform target)
+        private IDamageable _damageable;
+        
+        public AttackState(NavMeshAgent agent, Transform target, EnemyScriptableObject scriptableObject)
         {
             _target = target;
             _agent = agent;
-        }
-        
-        public void Enter()
-        {
+            _scriptableObject = scriptableObject;
             
+            _damageable = target.GetComponent<IDamageable>();
         }
 
         public void Stay()
         {
             _agent.SetDestination(_target.position);
+            _damageable.TakeDamage(CalculateDamage() * Time.deltaTime);
         }
 
-        public void Exit()
+        private float CalculateDamage()
         {
-            
+            float distance = Vector2.Distance(_agent.transform.position, _target.position);
+            float kof = 1 - (distance - _agent.stoppingDistance) / (_scriptableObject.attackDistance - _agent.stoppingDistance);
+            return Mathf.Lerp(_scriptableObject.minDamage, _scriptableObject.maxDamage, kof);
         }
-
+        
+        public void Enter() { }
+        public void Exit() { }
         public void OnDestroy() { }
     }
 }
