@@ -1477,7 +1477,7 @@ GameObject:
   - component: {fileID: 2136507366}
   - component: {fileID: 2136507367}
   m_Layer: 0
-  m_Name: Detecter
+  m_Name: Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

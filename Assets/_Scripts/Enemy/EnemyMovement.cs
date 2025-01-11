@@ -50,7 +50,7 @@ namespace _Scripts.Enemy
         private void OnPlayerExit()
         {
             StopCoroutine(_cooldownCoroutine);
-            _stateMachine.ChangeState(new AttackState());
+            _stateMachine.ChangeState(new PatrolState(this, enemyScriptableObject, _agent, patrolPoints));
         }
 
         private IEnumerator AttackCooldownCoroutine()
@@ -74,7 +74,7 @@ namespace _Scripts.Enemy
         
         private void Attack()
         {
-            Debug.Log("Attacking");
+            _stateMachine.ChangeState(new AttackState(_agent, _detector.Player.transform));
         }
     }
 }
