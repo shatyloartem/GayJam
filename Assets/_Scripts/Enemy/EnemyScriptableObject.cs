@@ -11,5 +11,7 @@ namespace _Scripts.Enemy
         public float detectDistance = 4f;
         public float attackCooldown = 2;
         public float attackDistance = 6.5f;
+        public float minDamage = 10;
+        public float maxDamage = 25;
     }
 }

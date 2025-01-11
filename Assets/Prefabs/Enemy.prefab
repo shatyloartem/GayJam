@@ -76,7 +76,11 @@ MonoBehaviour:
     m_Bits: 64
   searchDetector: {fileID: 5406484487823727310}
   attackDetector: {fileID: 6471960523802539643}
-  patrolPoints: []
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &712621244400729201
 GameObject:
   m_ObjectHideFlags: 0
