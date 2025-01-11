@@ -72,6 +72,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+/.idea/
 
 /Assets/Plugins/Sirenix/Odin Inspector/Config/Editor/InspectorConfig.asset
 /Assets/Plugins/Sirenix/Odin Inspector/Config/Editor/InspectorConfig.asset.meta
