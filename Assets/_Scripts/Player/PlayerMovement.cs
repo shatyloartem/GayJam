@@ -30,5 +30,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         rb.velocity = Vector2.zero;
+        _stepSoundController.SoundOff();
     }
 }
