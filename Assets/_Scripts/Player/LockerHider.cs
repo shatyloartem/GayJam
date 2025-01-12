@@ -8,7 +8,6 @@ public class LockerHider : MonoBehaviour
     private BoxCollider2D _boxCollider;
     private SpriteRenderer _spriteRenderer;
     private Transform _locker;
-    private LockerSound _lockerSound;
 
     private bool _isHidden;
     private bool _isLockerInRange;
