@@ -76,7 +76,7 @@ namespace _Scripts.UI
             {
                 Color color = _deathPanelGraphics[i].color;
                 color.a = _starterAlpha[i];
-                _deathPanelGraphics[i].DOColor(color, 1);
+                _deathPanelGraphics[i].DOColor(color, animationDuration);
             }
         }
 
