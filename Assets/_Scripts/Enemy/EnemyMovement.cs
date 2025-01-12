@@ -41,9 +41,12 @@ namespace _Scripts.Enemy
             searchDetector.SetDistance(enemyScriptableObject.detectDistance);
             searchDetector.OnPlayerEntered += OnPlayerSearchEnter;
             searchDetector.OnPlayerExited += OnPlayerSearchExit;
-            
+        }
+
+        private void Start()
+        {
             _stateMachine = new StateMachine(
-                new PatrolState(this, enemyScriptableObject, _agent, patrolPoints, _stepSoundController));
+                new PatrolState(this, enemyScriptableObject, _agent, patrolPoints, _stepSoundController));            
         }
 
         private void Update() => _stateMachine.UpdateState();

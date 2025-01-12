@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b88a7ce837a4bd592891ca4a935039a, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  speed: 3
+  patrolSpeed: 2
+  chaseSpeed: 3
   waitOnPointTime: 3.5
   distanceToStop: 0.5
-  detectDistance: 4
-  attackCooldown: 2
-  attackDistance: 6.5
+  detectDistance: 5
+  attackCooldown: 1.3
+  attackDistance: 6
   minDamage: 5
   maxDamage: 25
+  defaultStepsSoundPitch: 1
