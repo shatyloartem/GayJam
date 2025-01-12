@@ -143,6 +143,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: "\u043F'\u0454\u0434\u0435\u0441\u0442\u0430\u043B_1"
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 28
+        width: 65
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 4, y: 0, z: 11, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af001e0d5767af747b9adecae4c4243e
+      internalID: 1276587122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -155,6 +176,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       "\u043F'\u0454\u0434\u0435\u0441\u0442\u0430\u043B_0": -1097934102
+      "\u043F'\u0454\u0434\u0435\u0441\u0442\u0430\u043B_1": 1276587122
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

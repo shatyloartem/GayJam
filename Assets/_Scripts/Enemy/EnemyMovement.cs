@@ -24,11 +24,13 @@ namespace _Scripts.Enemy
         private IEnumerator _cooldownCoroutine;
 
         private NavMeshAgent _agent;
+        private StepSoundController _stepSoundController;
 
         private void Awake()
         {
+            _stepSoundController = GetComponentInChildren<StepSoundController>();
+            
             _agent = GetComponent<NavMeshAgent>();
-            _agent.speed = enemyScriptableObject.speed;
             _agent.stoppingDistance = enemyScriptableObject.distanceToStop;
             _agent.updateRotation = false;
             _agent.updateUpAxis = false;
@@ -39,8 +41,12 @@ namespace _Scripts.Enemy
             searchDetector.SetDistance(enemyScriptableObject.detectDistance);
             searchDetector.OnPlayerEntered += OnPlayerSearchEnter;
             searchDetector.OnPlayerExited += OnPlayerSearchExit;
-            
-            _stateMachine = new StateMachine(new PatrolState(this, enemyScriptableObject, _agent, patrolPoints));
+        }
+
+        private void Start()
+        {
+            _stateMachine = new StateMachine(
+                new PatrolState(this, enemyScriptableObject, _agent, patrolPoints, _stepSoundController));            
         }
 
         private void Update() => _stateMachine.UpdateState();
@@ -64,7 +70,8 @@ namespace _Scripts.Enemy
 
         private void OnPlayerAttackExit()
         {
-            _stateMachine.ChangeState(new PatrolState(this, enemyScriptableObject, _agent, patrolPoints));
+            _stateMachine.ChangeState(
+                new PatrolState(this, enemyScriptableObject, _agent, patrolPoints, _stepSoundController));
         }
 
         private IEnumerator AttackCooldownCoroutine()
@@ -88,7 +95,8 @@ namespace _Scripts.Enemy
         
         private void Attack()
         {
-            _stateMachine.ChangeState(new AttackState(_agent, searchDetector.Player.transform, enemyScriptableObject));
+            _stateMachine.ChangeState(
+                new AttackState(_agent, searchDetector.Player.transform, enemyScriptableObject, _stepSoundController));
         }
     }
 }

@@ -7,6 +7,7 @@ public class LockerHider : MonoBehaviour
     private BoxCollider2D _boxCollider;
     private SpriteRenderer _spriteRenderer;
     private Transform _locker;
+    private LockerSound _lockerSound;
 
     private bool _isHidden;
     private bool _isLockerInRange;
@@ -27,6 +28,8 @@ public class LockerHider : MonoBehaviour
             _isHidden = false;
 
             _spriteRenderer.sortingOrder = 3;
+
+            PlaySound();
         }
         else if (Input.GetKeyDown(KeyCode.E) && _isLockerInRange)
         {
@@ -37,7 +40,14 @@ public class LockerHider : MonoBehaviour
             _spriteRenderer.sortingOrder = 1;
 
             transform.parent.DOMove(_locker.position, .3f);
+
+            PlaySound();
         }
+    }
+
+    private void PlaySound()
+    {
+        _locker.GetComponent<LockerSound>().LockerOpenSound();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
