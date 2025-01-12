@@ -2,7 +2,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class ObjectThrow : MonoBehaviour
+public class GrenadesController : MonoBehaviour
 {
     [SerializeField] private GameObject _granadePrefab;
     [SerializeField] private TMP_Text _grenadeCounterText;
