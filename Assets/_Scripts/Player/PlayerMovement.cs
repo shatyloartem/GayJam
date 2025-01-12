@@ -97,7 +97,6 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
 
-        Debug.Log($"{InputManager.Movement.x} | {InputManager.Movement.y} | {state}");
         _animator.SetInteger(WalkState, state);
     }
 }

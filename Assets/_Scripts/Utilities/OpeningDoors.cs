@@ -6,7 +6,7 @@ public class OpeningDoors : MonoBehaviour
     [SerializeField] private Sprite _openedDoor;
     [SerializeField] private Sprite _closedDoor;
 
-    [SerializeField] private AudioClip _doorSound;
+    [SerializeField] private AudioClip _doorSound, _doorClosedSound;
 
     [SerializeField] private Collider2D _playerCollider;
 
@@ -51,6 +51,9 @@ public class OpeningDoors : MonoBehaviour
                 _audioSource.PlayOneShot(_doorSound);
             }
         }
+        
+        if(Input.GetKeyDown(KeyCode.E) && _isPlayerInRange && !_isKeyUsed)
+            _audioSource.PlayOneShot(_doorClosedSound);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

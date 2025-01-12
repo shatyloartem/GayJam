@@ -148,6 +148,7 @@ MonoBehaviour:
   _openedDoor: {fileID: 246507445, guid: 576bb05717aa5204db797c972a44c12d, type: 3}
   _closedDoor: {fileID: -727316620, guid: 576bb05717aa5204db797c972a44c12d, type: 3}
   _doorSound: {fileID: 8300000, guid: c0fd44a11388e484bb4b05f96ce3931d, type: 3}
+  _doorClosedSound: {fileID: 8300000, guid: ab0b19da0e9efdd4d822a4f5206baea2, type: 3}
   _playerCollider: {fileID: 0}
 --- !u!82 &467028366120658799
 AudioSource:
