@@ -1,9 +1,13 @@
+using System;
+using _Scripts.UI;
 using _Scripts.Utilities;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+
+    private bool _isGamePaused;
 
     private Vector2 _movementDirection;
 
@@ -18,8 +22,27 @@ public class PlayerMovement : MonoBehaviour
         LoadPosition();
     }
 
+    private void Start()
+    {
+        UIGameController.OnGamePaused += OnGamePaused;
+        UIGameController.OnGameUnpaused += OnGameUnpaused;
+    }
+
+    private void OnGameUnpaused()
+    {
+        _isGamePaused = false;
+    }
+
+    private void OnGamePaused()
+    {
+        _isGamePaused = true;
+    }
+
     private void Update()
     {
+        if (_isGamePaused) 
+            return;
+
         _movementDirection.Set(InputManager.Movement.x, InputManager.Movement.y);
 
         rb.velocity = _movementDirection * moveSpeed;
@@ -34,6 +57,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         _stepSoundController.SoundOff();
+
+        UIGameController.OnGamePaused -= OnGamePaused;
+        UIGameController.OnGameUnpaused -= OnGameUnpaused;
     }
 
     private void LoadPosition()

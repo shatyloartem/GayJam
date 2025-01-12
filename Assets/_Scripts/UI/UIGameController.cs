@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -8,11 +9,17 @@ namespace _Scripts.UI
 {
     public class UIGameController : MonoBehaviour
     {
+        [SerializeField] private GameObject pauseMenuUI;
         [SerializeField] private GameObject deathPanel, gameUI, eIcon;
         [SerializeField] private float animationDuration = 1f;
         
         public static UIGameController Instance { get; private set; }
-        
+
+        public static event Action OnGamePaused;
+        public static event Action OnGameUnpaused;
+
+        private bool isPaused;
+
         private Graphic[] _deathPanelGraphics;
         private List<float> _starterAlpha = new();
         
@@ -34,6 +41,33 @@ namespace _Scripts.UI
             }
         }
 
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (isPaused)
+                    Resume();
+                else
+                    Pause();
+            }
+        }
+
+        public void Resume()
+        {
+            pauseMenuUI.SetActive(false);
+            Time.timeScale = 1f;
+            isPaused = false;
+            OnGameUnpaused?.Invoke();
+        }
+
+        void Pause()
+        {
+            pauseMenuUI.SetActive(true);
+            Time.timeScale = 0f;
+            isPaused = true;
+            OnGamePaused?.Invoke();
+        }
+
         public void ActivateDeathPanel()
         {
             gameUI.SetActive(false);
@@ -46,7 +80,11 @@ namespace _Scripts.UI
             }
         }
 
-        public void MainMenu() => SceneManager.LoadScene("MainMenu");
+        public void MainMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
+            Time.timeScale = 1f;
+        }
 
         public void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         
