@@ -13,6 +13,7 @@ namespace _Scripts.Utilities
         }
 
         public static Vector2 Load() => _savedPosition;
+        public static void ResetCheckpoint() => _savedPosition = Vector2.zero;
         private static void Save(Vector2 positionToSave) => _savedPosition = positionToSave;
     }
 }
