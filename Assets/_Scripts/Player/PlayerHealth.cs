@@ -1,5 +1,6 @@
 using _Scripts.Enemy;
 using _Scripts.Interfaces;
+using _Scripts.UI;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -62,8 +63,9 @@ namespace _Scripts.Player
         private void Die()
         {
             _isDead = true;
-            
-            Debug.Log("Player dead");
+
+            GetComponent<PlayerMovement>().enabled = false;
+            UIGameController.Instance.ActivateDeathPanel();
         }
 
         private void UpdatePostProcess()

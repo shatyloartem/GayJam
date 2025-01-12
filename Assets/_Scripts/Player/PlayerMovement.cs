@@ -1,3 +1,4 @@
+using _Scripts.Utilities;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -13,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         _stepSoundController = GetComponentInChildren<StepSoundController>();
+        
+        LoadPosition();
     }
 
     private void Update()
@@ -31,5 +34,14 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         _stepSoundController.SoundOff();
+    }
+
+    private void LoadPosition()
+    {
+        var savedPosition = Checkpoint.Load();
+        if(savedPosition == Vector2.zero)
+            return;
+        
+        transform.position = savedPosition;
     }
 }
