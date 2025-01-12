@@ -11,6 +11,8 @@ public class KeyCounter : MonoBehaviour
         Instance = this;
     }
 
+    public bool HasKey() => _keyCount > 0;
+
     public bool UseKey()
     {
         if (_keyCount > 0)

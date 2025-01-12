@@ -1,3 +1,4 @@
+using _Scripts.UI;
 using UnityEngine;
 
 public class OpeningDoors : MonoBehaviour
@@ -55,12 +56,20 @@ public class OpeningDoors : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
+        {
             _isPlayerInRange = true;
+            
+            if(KeyCounter.Instance.HasKey())
+                UIGameController.Instance.SetIconActive(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
+        {
             _isPlayerInRange = false;
+            UIGameController.Instance.SetIconActive(false);
+        }
     }
 }

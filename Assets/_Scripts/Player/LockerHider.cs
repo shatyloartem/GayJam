@@ -1,3 +1,4 @@
+using _Scripts.UI;
 using DG.Tweening;
 using UnityEngine;
 
@@ -56,12 +57,16 @@ public class LockerHider : MonoBehaviour
         {
             _isLockerInRange = true;
             _locker = collision.transform;
+            UIGameController.Instance.SetIconActive(true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Locker"))
+        {
             _isLockerInRange = false;
+            UIGameController.Instance.SetIconActive(false);
+        }
     }
 }

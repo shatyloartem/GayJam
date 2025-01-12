@@ -8,7 +8,7 @@ namespace _Scripts.UI
 {
     public class UIGameController : MonoBehaviour
     {
-        [SerializeField] private GameObject deathPanel;
+        [SerializeField] private GameObject deathPanel, gameUI, eIcon;
         [SerializeField] private float animationDuration = 1f;
         
         public static UIGameController Instance { get; private set; }
@@ -20,19 +20,23 @@ namespace _Scripts.UI
         {
             Instance = this;
             
-            _deathPanelGraphics = deathPanel.GetComponentsInChildren<Graphic>();
+            eIcon.SetActive(false);
+            gameUI.SetActive(true);
             deathPanel.SetActive(false);
+
+            _deathPanelGraphics = deathPanel.GetComponentsInChildren<Graphic>();
             foreach (var graphic in _deathPanelGraphics)
             {
                 Color color = graphic.color;
                 _starterAlpha.Add(color.a);
                 color.a = 0f;
                 graphic.color = color;
-            }            
+            }
         }
 
         public void ActivateDeathPanel()
         {
+            gameUI.SetActive(false);
             deathPanel.SetActive(true);
             for (int i = 0; i< _deathPanelGraphics.Length; i++)
             {
@@ -45,5 +49,7 @@ namespace _Scripts.UI
         public void MainMenu() => SceneManager.LoadScene("MainMenu");
 
         public void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+        public void SetIconActive(bool active) => eIcon.SetActive(active);
     }
 }

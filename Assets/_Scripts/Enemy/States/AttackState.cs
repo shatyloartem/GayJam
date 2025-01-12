@@ -26,7 +26,7 @@ namespace _Scripts.Enemy.States
             _soundController = soundController;
 
             _agent.speed = _scriptableObject.chaseSpeed;
-            _damageable = target.GetComponent<IDamageable>();
+            _damageable = target.GetComponent<IDamageable>() ?? target.GetComponentInParent<IDamageable>();
         }
 
         public void Stay()
