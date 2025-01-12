@@ -10,6 +10,7 @@ namespace _Scripts.Enemy.States
         private EnemyScriptableObject _scriptableObject;
         private EnemyMovement _owner;
         private NavMeshAgent _agent;
+        private StepSoundController _soundController;
 
         private Transform[] _patrolPoints;
 
@@ -18,18 +19,23 @@ namespace _Scripts.Enemy.States
         private bool _isWaiting;
         
         public PatrolState(EnemyMovement owner, EnemyScriptableObject scriptableObject, 
-            NavMeshAgent agent, Transform[] patrolPoints)
+            NavMeshAgent agent, Transform[] patrolPoints, StepSoundController soundController)
         {
             _owner = owner;
             _agent = agent;
             _patrolPoints = patrolPoints;
             _scriptableObject = scriptableObject;
+            _soundController = soundController;
+            
+            _agent.speed = scriptableObject.patrolSpeed;
         }
         
         public void Enter()
         {
             _currentPoint = ClosestPoint();
+            
             _agent.SetDestination(_patrolPoints[_currentPoint].position);
+            _soundController.SoundOn(_scriptableObject.defaultStepsSoundPitch);
         }
 
         public void Stay()
@@ -46,6 +52,7 @@ namespace _Scripts.Enemy.States
                 _owner.StopCoroutine(_waitCoroutine);
 
             _agent.ResetPath();
+            _soundController.SoundOff();
         }
 
         public void OnDestroy()
@@ -58,19 +65,22 @@ namespace _Scripts.Enemy.States
         {
             _isWaiting = true;
             _agent.ResetPath();
+            _soundController.SoundOff();
             
             yield return new WaitForSeconds(_scriptableObject.waitOnPointTime);
             
             _isWaiting = false;
+            _waitCoroutine = null;
 
             _currentPoint++;
             if(_currentPoint >= _patrolPoints.Length)
                 _currentPoint = 0;
 
-            if(Application.isPlaying && _agent.isActiveAndEnabled)
-                _agent.SetDestination(_patrolPoints[_currentPoint].position);
+            if (!Application.isPlaying || !_agent.isActiveAndEnabled) 
+                yield break;
             
-            _waitCoroutine = null;
+            _agent.SetDestination(_patrolPoints[_currentPoint].position);
+            _soundController.SoundOn(_scriptableObject.defaultStepsSoundPitch);
         }
         
         private int ClosestPoint()
