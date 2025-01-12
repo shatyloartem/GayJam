@@ -7,6 +7,7 @@ namespace _Scripts.Utilities
 {
     public class VictorySceneController : MonoBehaviour
     {
+        [SerializeField] private string levelToLoad = "MainMenu";
         [SerializeField] private GameObject[] frames;
         [SerializeField] private float[] durations;
         
@@ -14,9 +15,6 @@ namespace _Scripts.Utilities
 
         private void Awake()
         {
-            // for(int i = 0; i < frames.Length; i++)
-            //     _animators[i] = frames[i].GetComponent<Animator>();
-         
             DisableAllFrames();
             StartCoroutine(PlayAnimation());
         }
@@ -31,7 +29,7 @@ namespace _Scripts.Utilities
                 yield return new WaitForSeconds(durations[i]);
             }
             
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene(levelToLoad);
             Checkpoint.ResetCheckpoint();
         }
 
