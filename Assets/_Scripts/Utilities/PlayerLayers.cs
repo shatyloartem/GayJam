@@ -18,8 +18,6 @@ namespace _Scripts.Utilities
         {
             if (!other.CompareTag("Player")) return;
 
-            Debug.Log($"{PlayerController.Collider.bounds.center.y} | {_boxCollider.bounds.max.y}");
-            
             SetLayer(PlayerController.Collider.bounds.center.y > _boxCollider.bounds.max.y ? "TopLayer" : "Default");
         }
 

@@ -82,6 +82,9 @@ namespace _Scripts.Enemy
             Vector2 direction = searchDetector.Player.transform.position - transform.position;
             var hit = Physics2D.Raycast(transform.position, direction.normalized, 
                 direction.magnitude, obstacleLayer);
+
+            Debug.DrawRay(transform.position, direction.normalized * direction.magnitude, Color.red);
+            Debug.Log(hit.collider);
             
             if (hit.collider)
             {
