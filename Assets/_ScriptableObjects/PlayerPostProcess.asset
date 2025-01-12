@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerPostProcess
   m_EditorClassIdentifier: 
   defaultAberrationIntensity: 0
-  maxAberrationIntensity: 0.25
+  maxAberrationIntensity: 1
   defaultVignetteIntensity: 0
-  maxVignetteIntensity: 0.5
+  maxVignetteIntensity: 0.7

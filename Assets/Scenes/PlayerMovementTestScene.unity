@@ -913,10 +913,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1567411042005226166, guid: 1196ce38058ef534a8257009b93cb020, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2413861489610878394, guid: 1196ce38058ef534a8257009b93cb020, type: 3}
       propertyPath: m_Name
       value: Locker
@@ -1032,29 +1028,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1625806274340159696, guid: 22074b445f420434da8dae0559e4f10b, type: 3}
-      propertyPath: _closedDoor
-      value: 
-      objectReference: {fileID: -727316620, guid: 576bb05717aa5204db797c972a44c12d, type: 3}
-    - target: {fileID: 1625806274340159696, guid: 22074b445f420434da8dae0559e4f10b, type: 3}
-      propertyPath: _openedDoor
-      value: 
-      objectReference: {fileID: 246507445, guid: 576bb05717aa5204db797c972a44c12d, type: 3}
-    - target: {fileID: 1625806274340159696, guid: 22074b445f420434da8dae0559e4f10b, type: 3}
       propertyPath: _playerCollider
       value: 
       objectReference: {fileID: 1299211276}
-    - target: {fileID: 3585542138633508712, guid: 22074b445f420434da8dae0559e4f10b, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3585542138633508712, guid: 22074b445f420434da8dae0559e4f10b, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.6153846
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064050249153781835, guid: 22074b445f420434da8dae0559e4f10b, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -727316620, guid: 576bb05717aa5204db797c972a44c12d, type: 3}
     - target: {fileID: 6775232779549504151, guid: 22074b445f420434da8dae0559e4f10b, type: 3}
       propertyPath: m_Name
       value: Door
